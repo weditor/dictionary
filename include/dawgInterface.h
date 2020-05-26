@@ -1,25 +1,30 @@
-#include "darts.h"
-#include <map>
-#include <string>
-#include <vector>
+#include "dawgdic/dawg.h"
+#include "dawgdic/dawg-builder.h"
+#include "dawgdic/dictionary-builder.h"
+#include "dawgdic/guide-builder.h"
+#include "dawgdic/ranked-completer.h"
+#include "dawgdic/ranked-guide-builder.h"
 #include "dictTypes.h"
+#include <map>
+// #include <string>
+#include <vector>
 
-using Darts::DoubleArray;
+// struct ResultType
+// {
+//     int value;
+//     std::size_t length;
+//     std::size_t start;
+// };
 
-typedef DoubleArray::result_pair_type InnerResultType;
-
-class DartsDictionary
+class DawgDictionary
 {
 public:
-    DartsDictionary();
-    ~DartsDictionary();
+    DawgDictionary();
+    ~DawgDictionary();
     bool build(std::string fileName);
 
     ResultType exactMatchSearch(const char *key, std::size_t length = 0) const;
 
-    // std::vector<ResultType> commonPrefixSearch(const char *key,
-    //                                                        std::size_t length,
-    //                                                        std::size_t start_pos)const;
     std::vector<ResultType> commonPrefixSearch(const char *key, std::size_t length = 0) const;
 
     /** 
@@ -44,5 +49,6 @@ private:
 
 private:
     // todo: 修改为智能指针
-    DoubleArray m_dict;
+    dawgdic::Dictionary m_dict;
+    dawgdic::RankedGuide m_guide;
 };

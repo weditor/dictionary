@@ -69,15 +69,9 @@ bool DartsDictionary::build(std::string fileName)
     size_t idx = 0;
     for (const auto &it : wordMap)
     {
-        std::cout << "word:" << it.first.c_str() << std::endl;
         words.push_back(it.first.c_str());
         values[idx] = it.second;
         idx += 1;
-    }
-    // std::cout << words.size() << std::endl;
-    for (size_t i = 0; i < wordMap.size(); i++)
-    {
-        std::cout << "word2: " << i << "," << words[i] << endl;
     }
 
     m_dict.build(wordMap.size(), &words[0], nullptr, values, nullptr);
@@ -86,12 +80,6 @@ bool DartsDictionary::build(std::string fileName)
 
     return true;
 }
-
-// DoubleArray::result_pair_type DartsDictionary::exactMatchSearch(const char *key,
-//                                                                 std::size_t length = 0,
-//                                                                 std::size_t node_pos = 0) const
-// {
-// }
 
 vector<ResultType> DartsDictionary::commonPrefixSearch(const char *key, std::size_t length) const
 {

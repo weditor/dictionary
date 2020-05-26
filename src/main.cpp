@@ -1,4 +1,5 @@
 #include "dictionaryInterface.h"
+#include "dawgInterface.h"
 
 #include <cstring>
 #include <fstream>
@@ -27,6 +28,16 @@ int main(int argc, char **argv)
     showResult(result);
     result = dict.searchUtf8("我浙江大学", 0);
     showResult(result);
+
+    DawgDictionary dawg;
+    dawg.build("../data/test.json");
+    // dict.build(argv[1]);
+    // vector<ResultType> result = dict.search("我浙江大学城市", 0);
+    // showResult(result);
+    // result = dict.searchUtf8("我浙江大学城市", 0);
+    // showResult(result);
+    // result = dict.searchUtf8("我浙江大学", 0);
+    // showResult(result);
 
     // try
     // {

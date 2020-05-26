@@ -4,9 +4,13 @@ cmake_minimum_required(VERSION 3.5)
 SET(CMAKE_CXX_STANDARD 14)
 SET(BUILD_SHARED_LIBS TRUE)
 
-include_directories(include)
-add_library(dictionary src/dictionaryInterface.cpp  /usr/local/lib/co/libco.a)
-target_link_libraries(dictionary )
+FIND_LIBRARY(LIBCO libco.a HINTS /usr/local/lib/co)
 
-add_executable(main src/main.cpp src/dictionaryInterface.cpp)
-target_link_libraries(main dictionary  /usr/local/lib/co/libco.a)
+message(use LIBCO: ${LIBCO})
+
+include_directories(include)
+add_library(dictionary src/dictionaryInterface.cpp src/dawgInterface.cpp )
+target_link_libraries(dictionary ${LIBCO})
+
+add_executable(main src/main.cpp)
+target_link_libraries(main dictionary)
